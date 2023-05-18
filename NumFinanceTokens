@@ -1,0 +1,30 @@
+const { requestPolygonListing } = require('@defillama/sdk');
+
+async function submitProductRequest() {
+  const productRequest = {
+    name: 'Num Finance Stablecoins',
+    website: 'https://www.num-finance.com',
+    twitter: 'https://twitter.com/numfinance',
+    collateralType: 'TOKEN',
+    collateralTokens: [
+      {
+        symbol: 'NumARS',
+        address: '0x91bc956F064d755dB2e4EfE839eF0131e0b07E28',
+      },
+      {
+        symbol: 'NumPEN',
+        address: '0xa5286319abbc22ceb755afbd81df55c1328dadd1',
+      },
+    ],
+    chain: 'Polygon',
+  };
+
+  try {
+    const response = await requestPolygonListing(productRequest);
+    console.log('Product request submitted successfully:', response);
+  } catch (error) {
+    console.error('Error submitting product request:', error);
+  }
+}
+
+submitProductRequest();
